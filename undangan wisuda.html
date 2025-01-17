@@ -1,0 +1,328 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Undangan Wisuda</title>
+        <style>
+            /* Previous styles remain the same */
+            body {
+                font-family: 'Segoe UI', 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                background: 
+                linear-gradient(
+                    rgba(26, 26, 46, 0.302), 
+                    rgba(22, 33, 62, 0.85)
+                ),
+                url('./image/foto.png') no-repeat center center;
+                background-size: cover;
+                background-attachment: scroll;
+                color: #ffffff7a;
+                position: relative;
+            }
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0);
+                pointer-events: none;
+            }
+            
+            .container {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.15);
+                border-radius: 25px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                position: relative;
+                z-index: 1;
+            }
+            
+            .header {
+                padding: 30px;
+                text-align: center;
+                font-size: 1.1em;
+                line-height: 1.6;
+                background-color: rgba(28, 37, 65, 0.8);
+                border-radius: 15px;
+                border: 2px solid #303f9f;
+            }
+            
+            h1 {
+                color: #000000;
+                font-size: 2.8em;
+                margin-bottom: 10px;
+                font-weight: bold;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            
+            .content {
+                padding: 30px;
+                text-align: center;
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
+            
+            .date-time {
+                background-color: rgba(28, 37, 65, 0.8);
+                padding: 25px;
+                margin: 20px 0;
+                border-radius: 15px;
+                border: 2px solid #303f9f;
+            }
+            
+            .rsvp-form {
+                max-width: 500px;
+                margin: 30px auto;
+                padding: 25px;
+                background-color: rgba(28, 37, 65, 0.8);
+                border-radius: 15px;
+            }
+            
+            textarea, input, select {
+                width: 100%;
+                padding: 12px;
+                margin: 10px 0;
+                border: 2px solid #303f9f;
+                border-radius: 10px;
+                font-size: 1em;
+                background-color: rgba(255, 255, 255, 0.9);
+                color: #000;
+            }
+            
+            button {
+                background-color: #303f9f;
+                color: white;
+                padding: 12px 25px;
+                border: none;
+                border-radius: 25px;
+                cursor: pointer;
+                font-size: 1.1em;
+                transition: all 0.3s ease;
+                margin-top: 15px;
+            }
+            
+            button:hover {
+                transform: scale(1.05);
+                background-color: #1a237e;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            /* New styles for RSVP history */
+            .rsvp-history {
+                max-width: 700px;
+                margin: 30px auto;
+                padding: 25px;
+                background-color: rgba(28, 37, 65, 0.8);
+                border-radius: 15px;
+            }
+
+            .rsvp-card {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                padding: 15px;
+                margin: 10px 0;
+                text-align: left;
+                border-left: 4px solid;
+            }
+
+            .rsvp-card.hadir {
+                border-left-color: #4CAF50;
+            }
+
+            .rsvp-card.tidak-hadir {
+                border-left-color: #f44336;
+            }
+
+            .rsvp-card h4 {
+                margin: 0 0 10px 0;
+                color: #fff;
+            }
+
+            .rsvp-card p {
+                margin: 5px 0;
+                font-size: 0.9em;
+            }
+
+            .rsvp-card .timestamp {
+                font-size: 0.8em;
+                color: #aaa;
+                margin-top: 10px;
+            }
+
+            .status-badge {
+                display: inline-block;
+                padding: 3px 8px;
+                border-radius: 12px;
+                font-size: 0.8em;
+                margin-left: 10px;
+            }
+
+            .status-badge.hadir {
+                background-color: rgba(76, 175, 80, 0.3);
+                color: #4CAF50;
+            }
+
+            .status-badge.tidak-hadir {
+                background-color: rgba(244, 67, 54, 0.3);
+                color: #f44336;
+            }
+
+            .rsvp-counter {
+                text-align: center;
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+            }
+
+            .counter-number {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #8c9eff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Previous content remains the same until the form -->
+            <div class="header">
+                <h1>Graduation Invitation!🎓✨</h1>
+                <p style="color: #000;">Dengan penuh sukacita, saya mengundang Bapak/Ibu/Saudara/i untuk berbagi momen istimewa dalam pencapaian akademik saya! ✨</p>
+            </div>
+            
+            <div class="content">
+                <div class="date-time">
+                    <h3>📅 Kapan wisuda dilaksanakan?</h3>
+                    <p>Insyaallah</p>
+                    <p>Sabtu, 26 April 2025</p>
+                    <p style="margin-top: 15px; font-style: italic;">Dress code: Menyusul 👔👗</p>
+                </div>
+                
+                <div class="rsvp-form">
+                    <h3>💌 Konfirmasi Kehadiran</h3>
+                    <form id="rsvpForm">
+                        <div>
+                            <label for="nama">Nama kamu:</label>
+                            <input type="text" id="nama" name="nama" placeholder="Tulis nama kamu di sini ya!" required>
+                        </div>
+                        <div>
+                            <label>Jenis Kelamin:</label><br>
+                            <label><input type="radio" name="gender" value="Laki-laki"> Laki-laki</label>
+                            <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+                        </div>
+                        <div>
+                            <label for="ukuranBaju">Ukuran Baju:</label>
+                            <select id="ukuranBaju" name="ukuranBaju" required>
+                                <option value="">Pilih ukuran</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="komentar">Mau titip pesan apa nih?</label>
+                            <textarea id="komentar" name="komentar" rows="4" placeholder="Tulis ucapan/pesan kamu~(opsional)"></textarea>
+                        </div>
+                        <div>
+                            <label>Bisa datang nggak nih? </label>
+                            <select id="kehadiran" name="kehadiran" required>
+                                <option value="">Pilih ya~</option>
+                                <option value="hadir">Bisa datang dong! 🙌</option>
+                                <option value="tidak_hadir">Maaf, belum bisa datang 😢</option>
+                            </select>
+                        </div>
+                        <button type="submit">Kirim Konfirmasi ✨</button>
+                    </form>
+                </div>
+                
+
+                <!-- New RSVP History section -->
+                <div class="rsvp-history">
+                    <h3> Konfirmasi!!! ✨</h3>
+                    <p>*apabila ada kesalahan/perubahan tolong hubungi 085215884890</p> 
+                    <div class="rsvp-counter">
+                        <p>Total konfirmasi: <span id="totalCounter" class="counter-number">0</span></p>
+                        <p>Yang bisa hadir: <span id="hadirCounter" class="counter-number">0</span></p>
+                    </div>
+                    <div id="rsvpList">
+                        <!-- RSVP cards will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Initialize counters
+            let totalRsvp = 0;
+            let hadirCount = 0;
+
+            // Function to update counters
+            function updateCounters() {
+                document.getElementById('totalCounter').textContent = totalRsvp;
+                document.getElementById('hadirCounter').textContent = hadirCount;
+            }
+
+            // Function to format date
+            function formatDate(date) {
+                const options = { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                };
+                return new Date(date).toLocaleDateString('id-ID', options);
+            }
+
+            document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const nama = document.getElementById('nama').value;
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+                const ukuranBaju = document.getElementById('ukuranBaju').value;
+                const komentar = document.getElementById('komentar').value;
+                const kehadiran = document.getElementById('kehadiran').value;
+                const timestamp = new Date();
+                
+                // Create RSVP card
+                const rsvpCard = document.createElement('div');
+                rsvpCard.className = `rsvp-card ${kehadiran}`;
+                
+                const statusText = kehadiran === 'hadir' ? 'Akan Hadir' : 'Tidak Dapat Hadir';
+                const statusClass = kehadiran === 'hadir' ? 'hadir' : 'tidak-hadir';
+                
+                rsvpCard.innerHTML = `
+                    <h4>${nama} <span class="status-badge ${statusClass}">${statusText}</span></h4>
+                    <p><strong>Jenis Kelamin:</strong> ${gender}</p>
+                    <p><strong>Ukuran Baju:</strong> ${ukuranBaju}</p>
+                    <p>${komentar}</p>
+                    <div class="timestamp">${formatDate(timestamp)}</div>
+                `;
+                
+                // Add card to the list
+                const rsvpList = document.getElementById('rsvpList');
+                rsvpList.insertBefore(rsvpCard, rsvpList.firstChild);
+                
+                // Update counters
+                totalRsvp++;
+                if (kehadiran === 'hadir') hadirCount++;
+                updateCounters();
+                
+                // Show confirmation
+                alert(`Makasih ya ${nama}! ✨\n\n${kehadiran === 'hadir' ? 'Yeay! Ditunggu kedatangannya ya!' : 'No worries! Lain kali kita ketemu ya~'}`);
+                
+                this.reset();
+            });
+            
+        </script>
+    </body>
+    </html>
